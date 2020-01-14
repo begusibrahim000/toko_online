@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jan 2020 pada 01.20
+-- Waktu pembuatan: 09 Jan 2020 pada 13.18
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `email_admin`, `password_admin`, `nama_lengkap_admin`, `foto_admin`, `terakhir_login`) VALUES
-(3, 'vue@gmail.com', 'vue', 'vue.js', 'vue.png', '09-Jan-2020 (1:35:19)'),
+(3, 'vue@gmail.com', 'vue', 'vue.js', 'vue.png', '07-Jan-2020 (1:15:56)'),
 (5, 'laravel@gmail.com', 'laravel', 'laravel', 'Chrysanthemum.jpg', '07-Jan-2020 (10:05:40)'),
 (6, 'bootstrap@gmail.com', 'bootstrap', 'bootstrap', 'Desert.jpg', '07-Jan-2020 (9:16:42)'),
 (7, 'php@gmail.com', 'php', 'php', 'Chrysanthemum.jpg', '07-Jan-2020 (9:17:57)'),
@@ -146,7 +146,7 @@ CREATE TABLE `pembelian` (
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_pelanggan`, `id_ongkir`, `tanggal_pembelian`, `total_pembelian`, `alamat_pengiriman`, `status_pembelian`, `resi_pengiriman`) VALUES
 (58, 14, 1, '2020-01-04', 710000, 'Pluto', 'sudah dikirim', 'ABC123'),
-(59, 13, 1, '2020-01-07', 410000, 'Pluto', 'sudah dikirim', '010101HACKER');
+(59, 13, 1, '2020-01-07', 410000, 'Pluto', 'lunas', '010101HACKER');
 
 -- --------------------------------------------------------
 
@@ -199,7 +199,7 @@ CREATE TABLE `produk` (
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`) VALUES
 (1, 'Hardware 1', 100000, 1000, 'hardware1.jpg', 'Hardware hp samsung', 171),
 (2, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 'Hardware hp xiomi', 82),
-(3, 'Hardware 3', 300000, 1000, 'hardware3.jpg', 'Hardware hp sony', 1),
+(3, 'Hardware 3', 300000, 1000, 'hardware3.jpg', 'Hardware hp sony', 64),
 (4, 'Hardware 4', 400000, 1000, 'hardware4.jpg', 'Hardware hp nokia', 97);
 
 --

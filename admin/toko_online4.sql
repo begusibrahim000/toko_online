@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jan 2020 pada 01.20
+-- Waktu pembuatan: 02 Jan 2020 pada 10.19
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -33,20 +33,20 @@ CREATE TABLE `admin` (
   `email_admin` varchar(100) NOT NULL,
   `password_admin` varchar(100) NOT NULL,
   `nama_lengkap_admin` varchar(100) NOT NULL,
-  `foto_admin` varchar(100) NOT NULL,
-  `terakhir_login` varchar(50) NOT NULL
+  `foto_admin` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `email_admin`, `password_admin`, `nama_lengkap_admin`, `foto_admin`, `terakhir_login`) VALUES
-(3, 'vue@gmail.com', 'vue', 'vue.js', 'vue.png', '09-Jan-2020 (1:35:19)'),
-(5, 'laravel@gmail.com', 'laravel', 'laravel', 'Chrysanthemum.jpg', '07-Jan-2020 (10:05:40)'),
-(6, 'bootstrap@gmail.com', 'bootstrap', 'bootstrap', 'Desert.jpg', '07-Jan-2020 (9:16:42)'),
-(7, 'php@gmail.com', 'php', 'php', 'Chrysanthemum.jpg', '07-Jan-2020 (9:17:57)'),
-(8, 'codeigniter@gmail.com', 'codeigniter', 'codeigniter', 'Koala.jpg', '07-Jan-2020 (9:17:24)');
+INSERT INTO `admin` (`id_admin`, `email_admin`, `password_admin`, `nama_lengkap_admin`, `foto_admin`) VALUES
+(1, 'begusibrahim000@gmail.com', 'begus', 'Begus Ibrahim', 'begus.jpg'),
+(2, 'snowdenvasiily@gmail.com', 'snowden', 'Snowden Vasilly', 'code_begus.jpg'),
+(3, 'vue@gmail.com', 'vue', 'vue.js', 'vue.png'),
+(5, 'laravel@gmail.com', 'laravel', 'laravel', 'Chrysanthemum.jpg'),
+(6, 'bootstrap@gmail.com', 'bootstrap', 'bootstrap', 'Desert.jpg'),
+(7, 'php@gmail.com', 'php', 'php', 'Chrysanthemum.jpg');
 
 -- --------------------------------------------------------
 
@@ -80,21 +80,18 @@ CREATE TABLE `pelanggan` (
   `password_pelanggan` varchar(50) NOT NULL,
   `nama_pelanggan` varchar(100) NOT NULL,
   `telepon_pelanggan` varchar(25) NOT NULL,
-  `alamat_pelanggan` text NOT NULL,
-  `foto_pelanggan` varchar(100) NOT NULL
+  `alamat_pelanggan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `email_pelanggan`, `password_pelanggan`, `nama_pelanggan`, `telepon_pelanggan`, `alamat_pelanggan`, `foto_pelanggan`) VALUES
-(12, 'coba@gmail.com', 'aboc', 'coba', '092384723', 'pluto', '2020010307am05Desert.jpg'),
-(13, 'ajib@gmail.com', 'ajib', 'ajib', '09289234987', 'Bulan', '2020010307am15Lighthouse.jpg'),
-(14, 'coding@gmail.com', 'coding', 'coding', '0101010101', 'Matahari', '2020010307am54_Jellyfish.jpg'),
-(15, 'java@gmail.com', 'java', 'java', '1010101010', 'sunda', '2020-01-03-07am55_Chrysanthemum.jpg'),
-(17, 'sublime@gmail.com', 'sublime', 'sublime', '089234798238', 'cinambo', '2020-01-08-03am41_10418209_1637942966452366_9177098793073258313_n.jpg'),
-(18, 'atom@gmai.com', 'atom', 'atom', '02934732923', 'Pluto', '2020-01-08-03am31_19466440_1973336836246309_5096039986548668875_o.jpg');
+INSERT INTO `pelanggan` (`id_pelanggan`, `email_pelanggan`, `password_pelanggan`, `nama_pelanggan`, `telepon_pelanggan`, `alamat_pelanggan`) VALUES
+(1, 'idan@gmail.com', 'idan', 'Idan Hidayat ZOLA', '08697713352', 'cingambul'),
+(6, 'begus@gmail.com', 'begus', 'Begus Ibrahim', '000000000', 'jatipamor'),
+(7, 'ilyas@gmail.com', 'ilyas', 'A ilyas ismail sholeh', '0892347239384', 'Sunapulo'),
+(9, 'iki@gmail.com', 'iki', 'A iki muhammad zaky', '0234937432', 'Jatipamor');
 
 -- --------------------------------------------------------
 
@@ -119,9 +116,7 @@ CREATE TABLE `pembayaran` (
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama_pengirim`, `nama_bank`, `jumlah_pembayaran`, `tanggal_pembayaran`, `bukti_pembayaran`) VALUES
 (15, 55, 'Begus Ibrahim', 'MANDIRI', 1010000, '2020-01-02', '2020010210am27Desert.jpg'),
 (16, 56, 'A iki muhammad zaky', 'BRI SYARIAH', 1210000, '2020-01-02', '2020010210am17Tulips.jpg'),
-(17, 57, 'Begus Ibrahim', 'BRI', 620000, '2020-01-02', '2020010210am42Koala.jpg'),
-(18, 58, 'coding', 'BRI', 710000, '2020-01-04', '2020010404am48Lighthouse.jpg'),
-(19, 59, 'ajib', 'BRI SYARIAH', 410000, '2020-01-07', '2020010707am13Screenshot from 2019-07-17 21-12-26.png');
+(17, 57, 'Begus Ibrahim', 'BRI', 620000, '2020-01-02', '2020010210am42Koala.jpg');
 
 -- --------------------------------------------------------
 
@@ -145,8 +140,9 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_pelanggan`, `id_ongkir`, `tanggal_pembelian`, `total_pembelian`, `alamat_pengiriman`, `status_pembelian`, `resi_pengiriman`) VALUES
-(58, 14, 1, '2020-01-04', 710000, 'Pluto', 'sudah dikirim', 'ABC123'),
-(59, 13, 1, '2020-01-07', 410000, 'Pluto', 'sudah dikirim', '010101HACKER');
+(55, 6, 1, '2020-01-02', 1010000, 'jl Jatipamor no 32', 'sudah dikirim', 'ABC123'),
+(56, 9, 1, '2020-01-02', 1210000, 'jl talaga no 3', 'lunas', 'CBA321'),
+(57, 6, 2, '2020-01-02', 620000, 'jl sutomo no 23', 'batal', '010101HACKER');
 
 -- --------------------------------------------------------
 
@@ -172,9 +168,9 @@ CREATE TABLE `pembelian_produk` (
 --
 
 INSERT INTO `pembelian_produk` (`id_pembelian_produk`, `id_pembelian`, `id_produk`, `jumlah`, `nama_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `subharga_produk`, `subberat_produk`) VALUES
-(66, 58, 2, 3, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 600000, 3000),
-(67, 58, 1, 1, 'Hardware 1', 100000, 1000, 'hardware1.jpg', 100000, 1000),
-(68, 59, 2, 2, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 400000, 2000);
+(63, 55, 2, 5, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 1000000, 5000),
+(64, 56, 4, 3, 'Hardware 4', 400000, 1000, 'hardware4.jpg', 1200000, 3000),
+(65, 57, 3, 2, 'Hardware 3', 300000, 1000, 'hardware3.jpg', 600000, 2000);
 
 -- --------------------------------------------------------
 
@@ -197,9 +193,9 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`) VALUES
-(1, 'Hardware 1', 100000, 1000, 'hardware1.jpg', 'Hardware hp samsung', 171),
-(2, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 'Hardware hp xiomi', 82),
-(3, 'Hardware 3', 300000, 1000, 'hardware3.jpg', 'Hardware hp sony', 1),
+(1, 'Hardware 1', 100000, 1000, 'hardware1.jpg', 'Hardware hp samsung', 172),
+(2, 'Hardware 2', 200000, 1000, 'hardware2.jpg', 'Hardware hp xiomi', 87),
+(3, 'Hardware 3', 300000, 1000, 'hardware3.jpg', 'Hardware hp sony', 64),
 (4, 'Hardware 4', 400000, 1000, 'hardware4.jpg', 'Hardware hp nokia', 97);
 
 --
@@ -262,7 +258,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `ongkir`
@@ -274,25 +270,25 @@ ALTER TABLE `ongkir`
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian_produk`
 --
 ALTER TABLE `pembelian_produk`
-  MODIFY `id_pembelian_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id_pembelian_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`

@@ -1,20 +1,46 @@
-﻿<?php include_once 'config/koneksi.php'; ?>
+﻿<?php 
+    session_start(); 
+    include 'config/koneksi.php';
+
+    // Menangani agar tidak ada yang memaksa masuk url index.php tanpa login
+    if(!isset($_SESSION['login_admin'])) :
+        echo "<script>alert('Anda harus login dulu :D ');</script>";
+        echo "<script>location='login.php';</script>";
+        header('Location:login.php');
+        exit;
+    endif;
+
+    $admin = $_SESSION['admin'];
+    
+    // echo "<pre>";
+    // echo "<br>";
+    // print_r($_SESSION);
+    // echo "</pre>";
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
-	<!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- MORRIS CHART STYLES-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator : CodeCrypt</title>
+  <!-- BOOTSTRAP STYLES-->
+  <link href="assets/css/bootstrap.css" rel="stylesheet" />
+  <!-- FONTAWESOME STYLES-->
+  <link href="assets/css/font-awesome.css" rel="stylesheet" />
+  <!-- MORRIS CHART STYLES-->
+  <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+  <!-- CUSTOM STYLES-->
+  <link href="assets/css/custom.css" rel="stylesheet" />
+  <!-- GOOGLE FONTS-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <style>
+      .logout {
+        border-radius: 5px;
+      }
+      .admin:hover {
+        background-color : red;
+      }
+  </style>
 </head>
 <body>
     <div id="wrapper">
@@ -26,33 +52,41 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Binary admin</a> 
+                <a class="navbar-brand" href="index.php"><span style="font-size: 15px;">TOKO ONLINE</span></a> 
             </div>
-  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+            <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">Terakhir Login : <?= $admin['terakhir_login']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust logout"><i class="fa fa-sign-out"></i> Logout</a></div>
 
         </nav>   
-           <!-- /. NAV TOP  -->
-                <nav class="navbar-default navbar-side" role="navigation">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-    				<li class="text-center">
-                        <img src="assets/img/find_user.png" class="user-image img-responsive"/>
-    				</li>
-                    <li>
-                        <a href="index.php"><i class="fa fa-dashboard fa-3x"></i> Home</a>
+                    <li class="text-center">
+                        <!-- <img src="assets/img/find_user.png" class="user-image img-responsive"/> -->
+                        <!-- pakai class "user_image" untuk membuat foto jadi thumbnail -->
+                        <img src="foto_admin/<?= $admin['foto_admin']; ?>" class="user-image img-responsive"/>
                     </li>
-                    <li>
-                        <a href="index.php?halaman=produk"><i class="fa fa-desktop fa-3x"></i> Produk</a>
+                    <li class="admin">
+                        <a href="index.php"><i class="fa fa-dashboard"></i> Home</a>
                     </li>
-                    <li>
-                        <a href="index.php?halaman=pembelian"><i class="fa fa-edit fa-3x"></i> Pembelian</a>
+                    <li class="admin">
+                        <a href="index.php?halaman=produk"><i class="fa fa-desktop"></i> Produk</a>
+                    </li>
+                    <li class="admin">
+                        <a href="index.php?halaman=pembelian"><i class="fa fa-shopping-cart"></i> Pembelian</a>
                     </li>				
-                    <li>
-                        <a href="index.php?halaman=pelanggan"><i class="fa fa-qrcode fa-3x"></i> Pelanggan</a>
+                    <li class="admin">
+                        <a href="index.php?halaman=pelanggan"><i class="fa fa-user"></i> Pelanggan</a>
                     </li>
-					<li>
+                    <li class="admin">
+                        <a href="index.php?halaman=laporan_pembelian"><i class="fa fa-cube"></i> Laporan</a>
+                    </li>
+                    <li class="admin">
+                        <a href="index.php?halaman=daftar_admin"><i class="fa fa-bolt"></i> Daftar Admin</a>
+                    </li>
+                    <!-- <li>
                         <a href="index.php?halaman=logout"><i class="fa fa-bolt fa-3x"></i> Log Out</a>
-                    </li>	
+                    </li> -->	
                 </ul>      
             </div>
             
@@ -61,6 +95,7 @@
         <div id="page-wrapper" >
             <div id="page-inner">
                 <?php 
+                    // Membuat kondisi agar halaman bisa dinamis khusus bagian content
                     if(isset($_GET['halaman'])) :
                         if($_GET['halaman'] == "produk") :
                             include 'produk.php';
@@ -68,32 +103,59 @@
                             include 'pembelian.php';
                         elseif ($_GET['halaman'] == "pelanggan") :
                             include 'pelanggan.php';
-                        elseif ($_GET['halaman'] == "logout") :
-                            include 'logout.php';
+                        elseif ($_GET['halaman'] == "laporan_pembelian") :
+                            include 'laporan_pembelian.php';
+                        elseif ($_GET['halaman'] == "detail_pembelian") :
+                            include 'detail_pembelian.php';
+                        elseif ($_GET['halaman'] == "tambah_produk") :
+                            include 'tambah_produk.php';
+                        elseif ($_GET['halaman'] == "hapus_produk") :
+                            include 'hapus_produk.php';
+                        elseif ($_GET['halaman'] == "ubah_produk") :
+                            include 'ubah_produk.php';
+                        elseif ($_GET['halaman'] == "tambah_pelanggan") :
+                            include 'tambah_pelanggan.php';
+                        elseif ($_GET['halaman'] == "ubah_pelanggan") :
+                            include 'ubah_pelanggan.php';
+                        elseif ($_GET['halaman'] == "hapus_pelanggan") :
+                            include 'hapus_pelanggan.php';
+                        elseif ($_GET['halaman'] == "detail_pelanggan") :
+                            include 'detail_pelanggan.php';
+                        elseif ($_GET['halaman'] == "daftar_admin") :
+                            include 'daftar_admin.php';
+                        elseif ($_GET['halaman'] == "pembayaran") :
+                            include 'pembayaran.php';
+                        // elseif ($_GET['halaman'] == "logout") :
+                        // include 'logout.php';
                         endif;
                     else :
                         include 'home.php';
                     endif;
                 ?>
             </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
+            <!-- /. PAGE INNER  -->
         </div>
-     <!-- /. WRAPPER  -->
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- FOOTER -->
+    <footer>
+        <?php //require '../layouts/footer.php' ?>
+    </footer>
+    <!-- AKHIR FOOTER -->
+
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
+    <!-- BOOTSTRAP SCRIPTS -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-     <!-- MORRIS CHART SCRIPTS -->
-     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <!-- MORRIS CHART SCRIPTS -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/js/morris/morris.js"></script>
-      <!-- CUSTOM SCRIPTS -->
+    <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
-    
-   
 </body>
 </html>

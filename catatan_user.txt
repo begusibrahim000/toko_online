@@ -1,0 +1,28 @@
+# PR :
+		===== 28 - 12 - 2018 / malam ahad =====
+	- keranjang sudah di beli -> checout -> logout -> dan keranjang hilang (gimana caranya keranjang tidak hilang yang sudah dibeli);
+	- checkuout -> session pelanggan dan keranjang
+	- Mendapatkan id_yang_terjadi_barusan dengan syntax "$koneksi->insert_id" -> pelajari lebih lanjut
+	- fitur checkout
+	- Cara mengambil data nama file untuk disimpan di variabel
+
+		===== 01 - 01 - 2020 / malam kamis =====
+
+	- memperbaiki fitur stok produk di index.php // SELESAI
+
+	- pembayaran sisi admin // SELESAI
+
+	- BUG mengirimkan fitur resi menjadi sama semua // SELESAI
+
+		===== 03 - 01 - 2020 / hari jum'at =====
+
+	- Pelajari fitur SEARCH yang kompleks
+
+		===== 11 - 01 - 2020 / hari jum'at =====
+	- Ambil key keyboard seperti backspace untuk tidak digunakan difutur searching
+
+
+# CATATAN : 
+	- $_SESSION[''] -> bisa diambil dari file mana saja
+	- session_destroy -> untuk menghapus semua session yang ada -> logout dll
+ 	- unset($variabel) -> untuk menhapus session yang ditentukan -> logout dll

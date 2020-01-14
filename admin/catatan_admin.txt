@@ -1,0 +1,27 @@
+=========================== BEGUS IBRAHIM | A FULL-STACK DEVELOPER | 26 Desember 2019 | TOKO ONLINE ===================
+# Menu menu :
+	- Home
+	- Produk
+	- Pembelian
+	- Pelanggan
+	- Log Out
+
+# PR :
+	1. Bumbu CRUD / redirect dll.
+	2. Pelanggan->password harus kompleks kondisinya
+	3. Total pembelian dan subtotal belum dinamis sama
+	4. pelajari tentang inisialisasi array awal dengan nilai kosong dan ditambahkan
+	5. pelajari teknik perulangan kombinasi antara foreach dan while
+	6. point 4 dan 5 kasusnya di laporan_pembelian.php
+	7. Pitur terakhir akses ADMIN
+	8. table pembelian dan pembelian_produk belum singkron
+
+# CATATAN :
+	- Lebih baik pakai redirect JS daripada PHP
+	- Administrator selesai pada tangga; 29 Desember 2019 jam 14:00
+	- User dimulai tanggal 20 Desember 2019 jam 14:01
+	- Foto admin di index.php belum dinamis
+	- Untuk fitur remember me agar bisa mengambil dan menampilkan data akun maka buat 2 session ketika berhasil login
+		* 1.session dengan data boolean "true" -> agar ketika menceklis cookie remember me maka yang dicek sessi ini true atau false untuk bisa auto login
+		* 2.session dengan data akun admin itu sendiri -> ambil nya dari database simpan ke cookie dan bandingkan emailnya agar bisa di ambil lagi ketika 
+		menceklis remeber me
